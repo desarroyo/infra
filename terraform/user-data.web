@@ -9,5 +9,5 @@ coreos:
         After=docker.service
 
         [Service]
-        ExecStartPre=/bin/sh -c 'systemctl set-enviroment ARTIFACT_ID=$$(/usr/bin/docker images --format "{{.Repository}}:{{.Tag}}")'
+        ExecStartPre=/bin/sh -c 'systemctl set-environment ARTIFACT_ID=$$(/usr/bin/docker images --format "{{.Repository}}:{{.Tag}}")'
         ExecStart=/usr/bin/docker run -d -p 3000:3000 ${ARTIFACT_ID}
