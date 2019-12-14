@@ -1,0 +1,13 @@
+#cloud-config
+coreos:
+  units:
+    - name: "desarroyo.service"
+      command: "start"
+      content: |
+        [Unit]
+        Description= DevOps demo
+        After=docker.service
+
+        [Service]
+        ExecStartPre=/bin/sh -c 'systemctl set-enviroment ARTIFACT_ID=$$(/usr/bin/docker images --format "{{.Repository}}:{{.Tag}}")'
+        ExecStart=/usr/bin/docker run -d -p 3000:3000 ${ARTIFACT_ID}
