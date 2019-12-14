@@ -9,7 +9,8 @@ pipeline{
     stages {
         stage('Build Packer') {
             steps {
-                sh './bash/build.sh"'
+                sh 'chmod +x ./bash/build.sh'
+                sh './bash/build.sh'
             }
         }        
     }
